@@ -13,7 +13,7 @@ const Navbar = () => {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -30,6 +30,9 @@ const Navbar = () => {
         </div>
         <div className="flex-none">
           {/* Using Link components for navigation */}
+          <Link to="/dashboard" className="btn btn-ghost">
+            Dashboard
+          </Link>
           <Link to="/users" className="btn btn-ghost">
             Users
           </Link>

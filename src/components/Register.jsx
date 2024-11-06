@@ -22,7 +22,7 @@ const Register = () => {
   useEffect(() => {
     if (isSuccess) {
       console.log("Registration successful");
-      navigate("/login");
+      navigate("/");
       dispatch(reset());
     }
   }, [isSuccess, navigate, dispatch]);
@@ -39,7 +39,7 @@ const Register = () => {
           <h1 className="text-4xl font-bold mb-2">GoFinance</h1>
           <p className="mb-4">Your trusted financial management</p>
           <Link
-            to={"/"}
+            to={"/more"}
             className="bg-blue-400 py-2 px-4 rounded-full shadow-md hover:bg-gray-100 hover:text-black"
           >
             Read More
@@ -126,7 +126,7 @@ const Register = () => {
           </button>
           <div className="flex justify-between">
             Already have an account?
-            <a href="/login" className="text-blue-600 hover:underline">
+            <a href="/" className="text-blue-600 hover:underline">
               Login
             </a>
           </div>

@@ -17,7 +17,7 @@ const Login = () => {
     if (isSuccess && user && token) {
       console.log("Token:", token);
       console.log(user.user);
-      navigate("/transactions");
+      navigate("/dashboard");
     }
     if (!user && !token) {
       console.log("User tidak ada, sudah logout.");
@@ -36,7 +36,7 @@ const Login = () => {
           <h1 className="text-4xl font-bold mb-2">GoFinance</h1>
           <p className="mb-4">Your trusted financial management</p>
           <Link
-            to={"/"}
+            to={"/more"}
             className="bg-blue-400 py-2 px-4 rounded-full shadow-md hover:bg-gray-100 hover:text-black"
           >
             Read More
