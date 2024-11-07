@@ -8,7 +8,10 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <div className="flex flex-col items-center justify-center p-4">
+      <div
+        className="flex flex-col items-center justify-center p-4 absolute"
+        style={{ top: "40%", left: "50%", transform: "translate(-50%, -50%)" }}
+      >
         <img
           src={user.photo}
           alt="Profile"

@@ -18,7 +18,7 @@ const Dashboard = () => {
           />
           <div className="text-center lg:text-left">
             <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold">
-              Welcome friend, {user.name}!
+              Welcome friend, {user.name || user.user.name}!
             </h1>
             <p className="py-6 text-sm sm:text-base lg:text-lg">
               Welcome to our website, where we provide you with the tools and
