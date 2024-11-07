@@ -1,3 +1,4 @@
+// importing all components that will be rendered when acessing the route
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -14,8 +15,10 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* navigate user to login after opening the web */}
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        {/* using private route to protect pages, the user have to login to access the pages */}
         <Route
           path="/dashboard"
           element={
@@ -64,6 +67,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        {/* navigate user to notfound page if the route didnt exist */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

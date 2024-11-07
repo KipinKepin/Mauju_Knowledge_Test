@@ -3,10 +3,13 @@ import { useSelector } from "react-redux";
 import Navbar from "./Navbar";
 
 const Profile = () => {
+  // get the current user to display his/her profile
   const { user } = useSelector((state) => state.auth);
 
+  // this page contain profile picture, name, and email
   return (
     <div className="min-h-screen bg-gray-100">
+      {/* include the navbar */}
       <Navbar />
       <div
         className="flex flex-col items-center justify-center p-4 absolute"

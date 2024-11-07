@@ -7,6 +7,7 @@ import { store } from "./app/store.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    {/* using store for state management */}
     <Provider store={store}>
       <App />
     </Provider>

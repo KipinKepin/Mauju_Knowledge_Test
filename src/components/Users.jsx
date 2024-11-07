@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// get all the function from the slice
 import { getUsers } from "../features/userSlice";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 
+// Helper function to format date in Indonesian format
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   return new Intl.DateTimeFormat("id-ID", {
@@ -14,15 +16,20 @@ const formatDate = (dateString) => {
 };
 
 const Users = () => {
+  // fetching all users
   const { pengguna } = useSelector((state) => state.pengguna);
   const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
+  useEffect(
+    () => {
+      dispatch(getUsers());
+    },
+    // the function will run by the dependencies below
+    [dispatch]
+  );
 
-  // Cek apakah pengguna adalah array sebelum mencoba untuk memanggil filter
+  // Checking the typeof pengguna, if array, do the filtering
   const filteredPengguna = Array.isArray(pengguna)
     ? pengguna.filter((orang) => {
         const lowerQuery = searchQuery.toLowerCase();
@@ -78,6 +85,7 @@ const Users = () => {
               </tr>
             </thead>
             <tbody className="text-gray-600 text-sm font-light">
+              {/* map the pengguna to table */}
               {Array.isArray(filteredPengguna) &&
                 filteredPengguna
                   .slice()

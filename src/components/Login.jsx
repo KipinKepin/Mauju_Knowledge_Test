@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { LoginUser, reset } from "../features/authSlice";
+// get all the function from the slice
+import { LoginUser } from "../features/authSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,21 +10,28 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // getting all the state
   const { user, isError, isSuccess, isLoading, message, token } = useSelector(
     (state) => state.auth
   );
 
-  useEffect(() => {
-    if (isSuccess && user && token) {
-      console.log("Token:", token);
-      console.log(user.user);
-      navigate("/dashboard");
-    }
-    if (!user && !token) {
-      console.log("User tidak ada, sudah logout.");
-    }
-  }, [isSuccess, isError, token, user, navigate]);
+  useEffect(
+    () => {
+      // if the login is success, the token and the user exist, navigate to the dashboard
+      if (isSuccess && user && token) {
+        console.log("Token:", token);
+        console.log(user.user);
+        navigate("/dashboard");
+      }
+      if (!user && !token) {
+        console.log("User tidak ada, sudah logout.");
+      }
+    },
+    // the function will run by the dependencies below
+    [isSuccess, isError, token, user, navigate]
+  );
 
+  // sending the data to global state using the LoginUser function
   const Auth = (e) => {
     e.preventDefault();
     dispatch(LoginUser({ email, password }));
@@ -48,6 +56,7 @@ const Login = () => {
           <h2 className="text-2xl font-bold">Hello Again!</h2>
           <p className="text-gray-600 mb-4">Welcome Back</p>
 
+          {/* display the error message */}
           {isError && (
             <div className="toast toast-top toast-right">
               <div className="alert alert-error text-white">

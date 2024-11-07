@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// get all the function from the slice
 import {
   getTransactions,
   editTransactions,
@@ -22,27 +23,40 @@ const EditTransaction = () => {
     transactionSelector.selectById(state, id)
   );
 
-  useEffect(() => {
-    dispatch(getTransactions());
-  }, [dispatch]);
+  // getting all the transactions
+  useEffect(
+    () => {
+      dispatch(getTransactions());
+    },
+    // the function will only run by the dispatch
+    [dispatch]
+  );
 
-  useEffect(() => {
-    if (transaction) {
-      setName(transaction.name);
-      setPrice(transaction.price);
-      setDate(transaction.date);
-      setStatus(transaction.status);
-    }
-  }, [transaction]);
+  useEffect(
+    () => {
+      // if the transaction exist, setting the data to the temporal state
+      if (transaction) {
+        setName(transaction.name);
+        setPrice(transaction.price);
+        setDate(transaction.date);
+        setStatus(transaction.status);
+      }
+    },
+    // the function will run by the dependencies below
+    [transaction]
+  );
 
+  // edit the data by id using the edittransactions function
   const handleEditTransaction = async (e) => {
     e.preventDefault();
     await dispatch(editTransactions({ id, name, price, date, status }));
+    // navigate to transaction after editing
     navigate("/transactions");
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      {/* include the navbar */}
       <Navbar />
       <form
         onSubmit={handleEditTransaction}

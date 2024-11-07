@@ -8,12 +8,15 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false); // Track if menu is open
 
+  // get current user from global state, we need it to display the user's photo at the navbar
   const { user } = useSelector((state) => state.auth);
   console.log(user);
 
+  // will execute logout function
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    // navigate user to first page(login page) after logged out
     navigate("/");
   };
 

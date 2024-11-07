@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+// get all the function from the slice
 import { RegisterUser, reset } from "../features/authSlice";
 
 const Register = () => {
@@ -10,6 +11,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // getting all the state
   const { isError, isSuccess, isLoading, message } = useSelector(
     (state) => state.auth
   );
@@ -19,14 +21,20 @@ const Register = () => {
     dispatch(reset());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (isSuccess) {
-      console.log("Registration successful");
-      navigate("/");
-      dispatch(reset());
-    }
-  }, [isSuccess, navigate, dispatch]);
+  useEffect(
+    () => {
+      // if the login is success, navigate to login page
+      if (isSuccess) {
+        console.log("Registration successful");
+        navigate("/");
+        dispatch(reset());
+      }
+    },
+    // the function will run by the dependencies below
+    [isSuccess, navigate, dispatch]
+  );
 
+  // sending the data using the registeruser function
   const Auth = (e) => {
     e.preventDefault();
     dispatch(RegisterUser({ name, email, password }));
@@ -51,6 +59,7 @@ const Register = () => {
           <h2 className="text-2xl font-bold">Welcome!</h2>
           <p className="text-gray-600 mb-4">Create your account</p>
 
+          {/* display the error message */}
           {isError && (
             <div className="toast toast-top toast-right">
               <div className="alert alert-error text-white">

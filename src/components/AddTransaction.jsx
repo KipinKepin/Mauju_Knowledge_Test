@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+// get all the function from the slice
 import { addTransactions } from "../features/transactionsSlice";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -13,14 +14,17 @@ const AddTransaction = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // sending the data to global state using the addtransactions function
   const handleAddTransaction = (e) => {
     e.preventDefault();
     dispatch(addTransactions({ name, price, date, status }));
+    // navigate user to transaction page after adding the data
     navigate("/transactions");
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      {/* include the navbar */}
       <Navbar />
       <form
         onSubmit={handleAddTransaction}

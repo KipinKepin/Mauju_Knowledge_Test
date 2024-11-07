@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
+  // get current user
   const { user } = useSelector((state) => state.auth);
   console.log(user);
 
