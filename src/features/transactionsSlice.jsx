@@ -6,7 +6,7 @@ import {
 import axios from "axios";
 
 // api of transactions
-const transactionUrl = "http://localhost:5000/transactions";
+const transactionUrl = "http://localhost:1357/transactions";
 
 // create function to fetch all the transactions
 export const getTransactions = createAsyncThunk(
